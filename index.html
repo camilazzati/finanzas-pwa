@@ -1,10 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>finanzas-pwa</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Finanzas personales simples, en pesos argentinos."
+    />
+    <meta name="theme-color" content="#f7f8f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#10150f" media="(prefers-color-scheme: dark)" />
+    <title>Mis finanzas</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("finanzas.appearance");
+          var mode = stored === "light" || stored === "dark" ? stored : "system";
+          var dark =
+            mode === "dark" ||
+            (mode === "system" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          var resolved = dark ? "dark" : "light";
+          document.documentElement.dataset.theme = resolved;
+          document.documentElement.style.colorScheme = resolved;
+        } catch (error) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
